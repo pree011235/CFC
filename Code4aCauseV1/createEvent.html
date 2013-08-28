@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1"><title>Code4aCause</title>
+
+</head>
+<script type="text/javascript">
+//var cal1x = new CalendarPopup("testdiv1");
+
+function createEvent() {
+
+	var calendarService = new google.gdata.calendar.CalendarService('GoogleInc-jsguide-1.0');
+
+	var feedUri = 'https://www.google.com/calendar/feeds/aa0vevb16blu9j9caq8onvurjo%40group.calendar.google.com/public/full';
+
+	var entry = new google.gdata.calendar.CalendarEventEntry();
+
+	entry.setTitle(new google.gdata.atom.Text.create("Coffee tomorrow 10am"));
+
+	var when = new google.gdata.When();
+	var startTime = google.gdata.DateTime.fromIso8601("2013-02-22T09:00:00.000-08:00");
+	var endTime = google.gdata.DateTime.fromIso8601("2013-02-24T10:00:00.000-08:00");
+	when.setStartTime(startTime);
+	when.setEndTime(endTime);
+	entry.addTime(when);
+
+	//var callback = function (result) {
+	  //      $('#panel').html('event created!');
+	//}
+
+	//var handleError = function (error) {
+//	        $('#panel').html(error);
+//	}
+
+	calendarService.insertEntry(feedUri, entry, callback, handleError, google.gdata.calendar.CalendarEventEntry);
+
+	}
+
+</script>
+<body>
+<form>
+</br></br></br></br>
+Task Name : <input type="text" id="name">
+</br></br></br></br>
+Task Description : <input type="text" id="desc">
+</br></br></br></br>
+
+Start Date : <script type="text/javascript"
+src="http://www.snaphost.com/jquery/Calendar.aspx"></script> &nbsp;
+</br></br></br></br>
+End Date : <script type="text/javascript">
+$(function () {
+$("#SnapHost_Calendar2")
+.datepicker({ showOn: 'both', buttonImage: 'http://www.snaphost.com/jquery/calendar.gif',
+buttonImageOnly: true, changeMonth: true, showOtherMonths: true, selectOtherMonths: true
+});});</script>
+<input name="SnapHost_Calendar2" id="SnapHost_Calendar2" type="text" /> 
+
+
+</br></br></br></br>
+
+<input type="submit" id="submit" value="Submit" onclick="createEvent()">
+</form>
+</body></html>
